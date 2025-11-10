@@ -14,6 +14,7 @@ import { authReducer } from './auth/authSlice.js'
 import { tablesReducer } from './tables/tablesSlice.js'
 import { workSessionReducer } from './workSession/workSessionSlice.js'
 import { modalReducer } from './modal/modalSlice.js'
+import { managerReducer } from './manager/managerSlice.js'
 
 const authConfig = {
   key: 'auth',
@@ -30,7 +31,8 @@ export const store = configureStore({
     auth: persistReducer(authConfig, authReducer),
     tables: persistReducer(tableConfig, tablesReducer),
     workSession: workSessionReducer,
-    modal: modalReducer
+    modal: modalReducer,
+    manager: managerReducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 
 export const Table = styled.table`
-  width: 100%;
+margin: 0 auto;
+  width: 60%;
   border-collapse: collapse;
 `
 export const Col = styled.tr`
@@ -17,4 +18,5 @@ export const Raw = styled.td`
   color: #fff;
   border-bottom: 2px solid var(--pink);
   text-align: center;
+  max-width: 60px;
 `

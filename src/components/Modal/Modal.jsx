@@ -5,11 +5,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { closeModal } from '../../redux/modal/modalSlice'
 import { selectModalIsOpenModal } from '../../redux/modal/selectors'
 
-export const Modal = ({children}) => {
+export const Modal = ({ children }) => {
   const dispatch = useDispatch()
   const isOpen = useSelector(selectModalIsOpenModal)
   const [showContent, setShowContent] = useState(false)
   useEffect(() => {
+    console.log('Modal children:', children);
     if (isOpen) {
       setShowContent(true)
     } else {
@@ -18,23 +19,25 @@ export const Modal = ({children}) => {
       }, 300)
       return () => clearTimeout(timer)
     }
-  }, [isOpen])
+  }, [isOpen, children])
   const handleClose = () => {
     setShowContent(false)
-    setTimeout(() =>{
-        dispatch(closeModal())
+    setTimeout(() => {
+      dispatch(closeModal())
     }, 300)
   }
   if (!isOpen && !showContent) return null
   return (
     <>
-      <Backdrop onClick={handleClose}/>
-      <ModalWrap $showContent = {showContent}>
+      <Backdrop onClick={handleClose} />
+      <ModalWrap $showContent={showContent}>
         <HeadContainer>
           <h2>Settings</h2>
           <button onClick={handleClose}>X</button>
         </HeadContainer>
         {children}
+        {/* {React.isValidElement(children) &&
+          React.cloneElement(children, { onClose: handleClose })} */}
       </ModalWrap>
     </>
   )

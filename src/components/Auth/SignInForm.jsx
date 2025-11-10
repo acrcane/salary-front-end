@@ -3,6 +3,7 @@ import { toast } from 'react-toastify'
 import { Container, Label, Input,Submit } from './AuthForm.styled'
 import { useDispatch } from 'react-redux'
 import { apiSignIn } from '../../redux/auth/operations'
+import { Link } from 'react-router-dom'
 
 export const SignInForm = () => {
   const [formError, setFormError] = useState(null)
@@ -57,6 +58,8 @@ export const SignInForm = () => {
       </Label>
       {formError && <p style={{ color: 'red', marginTop: '10px' }}>{formError}</p>}
       <Submit type="submit">Submit</Submit>
+      <p>OR</p>
+      <Link to={'/sign-up'}>Registration</Link>
     </form>
   </Container>
   )

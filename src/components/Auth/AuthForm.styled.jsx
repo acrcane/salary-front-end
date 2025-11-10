@@ -41,6 +41,7 @@ border-radius: 7px;
 transition: ease-in-out 0.3s;
 color: var(--white);
 padding: 7px 10px;
+margin-top: 20px;
 &:hover{
     background-color: var(--pink);
     border: 1px solid var(--pink);

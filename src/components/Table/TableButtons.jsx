@@ -3,6 +3,7 @@ import { useDispatch} from 'react-redux'
 import { Close, Container, Create } from './TableButtons.styled'
 import { apiCloseTable, apiCreateTable } from '../../redux/tables/operations'
 import { getPersistTableId } from '../../utils/getPersist'
+import { clearTableId } from '../../redux/tables/tablesSlice'
 
 
 
@@ -15,8 +16,8 @@ export const TableButtons = () => {
 
   const handleCloseTable = () => {
     const id = getPersistTableId()
-
     dispatch(apiCloseTable(id))
+    dispatch(clearTableId())
   }
   
   

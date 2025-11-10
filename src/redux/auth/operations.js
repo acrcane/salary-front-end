@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { $api } from '../axiosInstance'
 
-const setToken = token => {  
+const setToken = (token) => {
   $api.defaults.headers.common.Authorization = `Bearer ${token}`
 }
 
@@ -11,12 +11,15 @@ const clearToken = () => {
 
 export const apiSignUp = createAsyncThunk(
   'auth/apiSignUp',
-  async (formData, thunkApi) => {
+  async ({formData, type}, thunkApi) => {
     try {
-      const { data } = await $api.post('/users/signup', formData)
-      setToken(data.token)   
+      const route = type === 'manager' ? '/manager/signup' : '/users/signup'
+      console.log(formData);
+      
+      const { data } = await $api.post(route, formData)
+      setToken(data.token)
       return data
-    } catch (error) {      
+    } catch (error) {
       return thunkApi.rejectWithValue(error.message)
     }
   }
@@ -42,10 +45,11 @@ export const apiCurrent = createAsyncThunk(
     const token = state.auth.token
     try {
       setToken(token)
-        const { data } = await $api.get('/users/current')        
-        return data
+      const { data } = await $api.get('/users/current')
+
+      return data
     } catch (error) {
-       return thunkApi.rejectWithValue(error.message)
+      return thunkApi.rejectWithValue(error.message)
     }
   }
 )
@@ -61,3 +65,4 @@ export const apiSignOut = createAsyncThunk(
     }
   }
 )
+

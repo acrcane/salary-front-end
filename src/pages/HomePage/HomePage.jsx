@@ -1,22 +1,36 @@
-import React from 'react'
-import { TableButtons, TableComponent, WorkSession } from '../../components'
+import React, { useEffect } from 'react'
+import { Manager, MyCalendar, TableButtons, WorkSession } from '../../components'
 import { Container } from './HomePage.styled'
 import { selectAuthUserData } from '../../redux/auth/selectors'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectAllUsers } from '../../redux/manager/selectors'
+import { apiAllUsers } from '../../redux/manager/operations'
+
 
 const HomePage = () => {
+  const dispatch = useDispatch()
   const user = useSelector(selectAuthUserData)
-  
+  const allUsers = useSelector(selectAllUsers)
+  useEffect(() => {
+    if(user?.role === 'manager'){
+      dispatch(apiAllUsers())
+    }
+  }, [dispatch, user])
   return (
     <>
     {user?.role === 'manager' ?(
-      <div style={{color: 'red'}}>I'm admin</div>
+      <Container>
+        <Manager allUsers = {allUsers}/>
+      </Container>
     ):(
       <Container>
         <TableButtons />
         <WorkSession />
       </Container>
     )}
+          <Container>
+        <MyCalendar />
+      </Container>
   </>
   )
 }

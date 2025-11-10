@@ -2,10 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { Popup } from '../Popup/Popup'
 import { Container, Link } from './Header.styled'
-import {
-  selectTableId,
-  // selectCurrentTable
-} from '../../redux/tables/selectors'
+import { selectTableId } from '../../redux/tables/selectors'
 
 export const Header = () => {
   const currentTable = useSelector(selectTableId)
@@ -13,12 +10,13 @@ export const Header = () => {
   return (
     <Container>
       <nav>
-        <Link to={`/home`}>Home</Link>
-        {currentTable ? (
-          <Link to={`/table/${currentTable}`}>Table</Link>
-        ) : (
-          <div style={{ color: 'red' }}>SOMETHING WRONG</div>
-        )}
+        <Link to={`/home`} end>Home</Link>
+        <Link to={currentTable ? `/table/${currentTable}` : '#'}
+        $disabled={!currentTable}
+        onClick={e => {if(!currentTable) e.preventDefault()}}
+        aria-disabled={!currentTable}
+        tabIndex={currentTable ? 0 : -1}
+        end >Table</Link>
       </nav>
       <Popup />
     </Container>

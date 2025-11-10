@@ -1,13 +1,16 @@
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
 import { lazy, Suspense, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import PrivateRoute from './routes/PrivateRoute'
 import RestrictedRoute from './routes/RestrictedRoute'
 import { apiCurrent } from './redux/auth/operations'
 import { ClipLoader } from 'react-spinners'
 import { override } from './utils/loader'
 import { ToastContainer } from 'react-toastify'
+import { selectAuthToken } from './redux/auth/selectors'
+
+
 
 const Layout = lazy(() => import('./components/layout/Layout'))
 const PrivateLayout = lazy(() =>
@@ -20,11 +23,17 @@ const HomePage = lazy(() => import('./pages/HomePage/HomePage'))
 const TablePage = lazy(() => import('./pages/TablePages/TablePages'))
 
 function App() {
+  
   const dispatch = useDispatch()
+  const token = useSelector(selectAuthToken)
   useEffect(() => {
+    if(!token){
+      console.log(token, 'bad token');
+      
+    }
     dispatch(apiCurrent())
-
-  }, [dispatch])
+    
+  }, [dispatch, token])
 
   return (
     <>

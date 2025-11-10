@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container } from './TablePages.styled'
-import { TableButtons, TableComponent } from '../../components'
+import { TableComponent } from '../../components'
 
 const TablePages = () => {
   return (

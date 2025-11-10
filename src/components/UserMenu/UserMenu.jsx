@@ -5,10 +5,12 @@ import { selectAuthUserData } from '../../redux/auth/selectors'
 
 export const UserMenu = () => {
   const user = useSelector(selectAuthUserData)
+  
   return (
     <Container>
       <h2>Name: {user.name}</h2>
-      <span>Salary per hour: {user.hourlyRate}zł</span>
+      <span>Salary per hour: {user.hourlyRate}zł</span> <br />
+      <span>User role: {user.role}</span>
     </Container>
   )
 }

@@ -20,6 +20,8 @@ export const SignUpForm = () => {
     const confirmPassword = (formData.get('confirmPassword') || '')
       .trim()
       .replace(/[^a-zA-Z0-9]/g, '')
+    const company = (formData.get('company') || '').trim().toLowerCase().replace(/[^a-zA-Z0-9]/g, '')
+    const hourlyRate = (formData.get('hourlyRate') || '').trim().toLowerCase().replace(/[^a-zA-Z0-9]/g, '')
 
     if (password !== confirmPassword) {
       setFormError('Password is not confirm')
@@ -36,9 +38,11 @@ export const SignUpForm = () => {
       email,
       name,
       password,
+      company,
+      hourlyRate
     }
     try {
-      await dispatch(apiSignUp(data)).unwrap()
+      await dispatch(apiSignUp({formData: data})).unwrap()
       toast.success(`Hello ${name}`)
     } catch (error) {
       console.error(error);
@@ -80,6 +84,22 @@ export const SignUpForm = () => {
             name="confirmPassword"
             id="confirmPassword"
             placeholder="Repeat your password"
+          />
+        </Label>
+        <Label htmlFor="company">
+          <Input
+            type="text"
+            name="company"
+            id="company"
+            placeholder="Enter your company"
+          />
+        </Label>
+        <Label htmlFor="hourlyRate">
+          <Input
+            type="number"
+            name="hourlyRate"
+            id="hourlyRate"
+            placeholder="Enter salary per hour"
           />
         </Label>
         {formError && (

@@ -2,20 +2,22 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useRef } from 'react'
 import { PopupTriger, TrigerBtn, ActionContainer, Icon } from './Popup.styled'
-import { apiSignOut } from '../../redux/auth/operations'
+// import { apiSignOut } from '../../redux/auth/operations'
 import { openModal } from '../../redux/modal/modalSlice'
+// import { clearTableId } from '../../redux/tables/tablesSlice'
 export const Popup = () => {
   const popupRef = useRef(null)
     const dispatch = useDispatch()
-
-    const handleSignOut = () => {
-        dispatch(apiSignOut())
-        popupRef.current.close()
+    const handleOpenSettings = () => {
+      dispatch(openModal('settings'))
+    }
+    const handleConfirm = () => {
+      dispatch(openModal('logout'))
     }
 
-    const handleOpen = () => {
-      dispatch(openModal())
-    }
+    // const handleOpen = () => {
+    //   dispatch(openModal())
+    // }
   return (
     <>
       <PopupTriger
@@ -27,8 +29,8 @@ export const Popup = () => {
         arrow="false"
       >
         <ActionContainer>
-            <button onClick={handleOpen}>Settings</button>
-            <button onClick={handleSignOut}>Log Out</button>
+            <button onClick={handleOpenSettings}>Settings</button>
+            <button onClick={handleConfirm}>Log Out</button>
         </ActionContainer>
       </PopupTriger>
     </>

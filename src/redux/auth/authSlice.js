@@ -38,7 +38,8 @@ const authSlice = createSlice({
         state.user = {
           name: action.payload.name,
           email: action.payload.email,
-          role: action.payload.role
+          role: action.payload.role,
+          hourlyRate: action.payload.hourlyRate
         }        
       })
       .addMatcher(

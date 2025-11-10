@@ -5,10 +5,20 @@ export const apiCurrentTable = createAsyncThunk(
   'table/apiCurrentTable',
   async (id, thunkApi) => {
     try {
-      const { data } = await $api.get(`/table/${id}`)
-
-
+      const { data } = await $api.get(`/table/${id}`)      
       return data
+    } catch (error) {
+      thunkApi.rejectWithValue(error.message)
+    }
+  }
+)
+
+export const apiCurrentTableId = createAsyncThunk(
+  'table/apiCurrentTableId',
+  async (id, thunkApi) => {
+    try {
+      const { data } = await $api.get(`/table/${id}`)      
+      return data._id
     } catch (error) {
       thunkApi.rejectWithValue(error.message)
     }
@@ -32,6 +42,8 @@ export const apiCloseTable = createAsyncThunk(
   async (id, thunkApi) => {
     try {
       const { data } = await $api.patch(`/table/close/${id}`)
+      console.log('tables/operations/apiCloseTable', data );
+      
       return data
     } catch (error) {
       thunkApi.rejectWithValue(error.message)
