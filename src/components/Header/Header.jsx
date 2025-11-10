@@ -17,6 +17,7 @@ export const Header = () => {
         aria-disabled={!currentTable}
         tabIndex={currentTable ? 0 : -1}
         end >Table</Link>
+        {/* <Link to={`/table/${currentTable}`}>Table</Link> */}
       </nav>
       <Popup />
     </Container>
