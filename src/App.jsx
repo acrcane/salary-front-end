@@ -26,14 +26,13 @@ function App() {
   
   const dispatch = useDispatch()
   const token = useSelector(selectAuthToken)
+
   useEffect(() => {
-    if(!token){
-      console.log(token, 'bad token');
-      
-    }
-    dispatch(apiCurrent())
-    
-  }, [dispatch, token])
+    if (!token) return;
+    dispatch(apiCurrent());
+  }, [dispatch, token]);
+  
+  
 
   return (
     <>
