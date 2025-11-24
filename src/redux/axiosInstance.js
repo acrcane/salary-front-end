@@ -2,8 +2,10 @@ import axios from "axios";
 
 export const $api = axios.create({
     baseURL: 'https://salary-back-end.onrender.com',
-
+    withCredentials: false
 })
+
+$api.defaults.withCredentials = false
 
 $api.interceptors.response.use(
     response => response,

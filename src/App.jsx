@@ -25,12 +25,23 @@ const TablePage = lazy(() => import('./pages/TablePages/TablePages'))
 function App() {
   
   const dispatch = useDispatch()
-  const token = useSelector(selectAuthToken)
+  // const token = useSelector(selectAuthToken)
 
+  // useEffect(() => {
+  //   if (!token) return;
+  //   dispatch(apiCurrent());
+  // }, [dispatch, token]);
   useEffect(() => {
-    if (!token) return;
-    dispatch(apiCurrent());
-  }, [dispatch, token]);
+    const persist = localStorage.getItem('persist:auth');
+    if (!persist) return;
+  
+    const parsed = JSON.parse(persist);
+    const token = parsed.token?.replace(/"/g, '');
+  
+    if (token) {
+      dispatch(apiCurrent());
+    }
+  }, []); 
   
   
 
