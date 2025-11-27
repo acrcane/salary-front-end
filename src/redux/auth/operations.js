@@ -31,6 +31,7 @@ export const apiSignIn = createAsyncThunk(
     try {
       const { data } = await $api.post('/users/signin', formData)
       setToken(data.token)
+      thunkApi.dispatch(apiCurrent())
       return data
     } catch (error) {
       return thunkApi.rejectWithValue(error.message)
