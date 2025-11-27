@@ -1,0 +1,9 @@
+import{u as i,j as s,g as p,y as d,h as C,d as m,a as r,i as x,k,l as u,m as b,n as j,s as g,r as I,p as f}from"./index-DupsPT7-.js";import{d as S,e as T,f as O,g as w,h as y,i as E,j as D,E as A,k as P}from"./MyCalendar-B9c0CkXK.js";import{a as R}from"./selectors-BKzC1wDG.js";import{d as W}from"./styled-components.browser.esm-CMelA942.js";const h=()=>{const e=localStorage.getItem("persist:tables"),a=JSON.parse(e);return JSON.parse(a.tableId)},_=()=>{const e=i(),a=()=>{e(p()).unwrap().catch(t=>{(t==null?void 0:t.message)==="You already have an open table"?d.warning("Table already exists"):d.error("Can't create table")})},n=()=>{const t=h();e(C(t)),e(m())};return s.jsxs(S,{children:[s.jsx(T,{onClick:a,children:"Create table"}),s.jsx(O,{onClick:n,children:"Close table"})]})},J=e=>e.workSession.workSession.checkIn,M=()=>{const e=i(),a=r(J),n=()=>{const o=new Date().toISOString();e(x(o))},t=()=>{const o=new Date().toISOString(),c=h();e(k(c)),e(u(o)),e(b({checkIn:a,tableId:c,checkOut:o}))};return s.jsxs(w,{children:[s.jsx(y,{onClick:n,children:"Check In"}),s.jsx(E,{onClick:t,children:"Check Out"})]})},N=({allUsers:e})=>{i();const{id:a}=j();r(R);const n=t=>{const o=e.find(c=>c._id===t);console.log(o)};return s.jsx(D,{children:e==null?void 0:e.filter(t=>t.role==="assistent").map(t=>s.jsx(A,{children:s.jsx("button",{onClick:()=>n(t._id),children:t.name})},t._id))})},l=W.main`
+display: flex;
+padding: 0 40px;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 50px;
+background-color: transparent;
+`,$=e=>e.manager.users,H=()=>{const e=i(),a=r(g),n=r($);return I.useEffect(()=>{(a==null?void 0:a.role)==="manager"&&e(f())},[e,a]),s.jsxs(s.Fragment,{children:[(a==null?void 0:a.role)==="manager"?s.jsx(l,{children:s.jsx(N,{allUsers:n})}):s.jsxs(l,{children:[s.jsx(_,{}),s.jsx(M,{})]}),s.jsx(l,{children:s.jsx(P,{})})]})};export{H as default};
