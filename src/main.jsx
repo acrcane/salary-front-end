@@ -12,7 +12,7 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <PersistGate loading={<ClipLoader />} persistor={persistor}>
       <Provider store={store}>
-        <BrowserRouter basename='/salary-front-end'>
+        <BrowserRouter basename='salary-front-end'>
           <App />
         </BrowserRouter>
       </Provider>

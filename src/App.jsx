@@ -85,6 +85,7 @@ function App() {
               <Route path="/table/:id?" element={<TablePage />} />
             </Route>
           </Route>
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         <ToastContainer />
       </Suspense>
