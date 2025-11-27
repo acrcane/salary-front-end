@@ -14,7 +14,7 @@ $api.interceptors.response.use(
 
         localStorage.removeItem('persist:auth');
 
-        window.location.href = '/sign-in';
+        // window.location.href = '/sign-in';
 
       }
       
