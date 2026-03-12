@@ -5,10 +5,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import PrivateRoute from './routes/PrivateRoute'
 import RestrictedRoute from './routes/RestrictedRoute'
 import { apiCurrent } from './redux/auth/operations'
+import { selectAuthUserData } from './redux/auth/selectors'
+import { selectAuthToken } from './redux/auth/selectors'
+import { apiCurrentTable } from './redux/tables/operations'
 import { ClipLoader } from 'react-spinners'
 import { override } from './utils/loader'
 import { ToastContainer } from 'react-toastify'
-import { selectAuthToken } from './redux/auth/selectors'
 import { Navigate } from 'react-router-dom'
 
 
@@ -22,16 +24,15 @@ const SignUpPage = lazy(() => import('./pages/AuthPages/SignUpPage'))
 const SignInPage = lazy(() => import('./pages/AuthPages/SignInPage'))
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'))
 const TablePage = lazy(() => import('./pages/TablePages/TablePages'))
+const ProfilePage = lazy(() => import('./pages/ProfilePage/ProfilePage'))
 
 function App() {
   
   const dispatch = useDispatch()
-  // const token = useSelector(selectAuthToken)
+  const token = useSelector(selectAuthToken)
+  const user = useSelector(selectAuthUserData)
 
-  // useEffect(() => {
-  //   if (!token) return;
-  //   dispatch(apiCurrent());
-  // }, [dispatch, token]);
+
   useEffect(() => {
     const persist = localStorage.getItem('persist:auth');
     if (!persist) return;
@@ -42,9 +43,15 @@ function App() {
     if (token) {
       dispatch(apiCurrent());
     }
-  }, []); 
-  
-  
+  }, [dispatch, token]); 
+
+  useEffect(() => {
+    if (user) {
+      dispatch(apiCurrentTable())
+    }
+  }, [user, dispatch])
+
+   
 
   return (
     <>
@@ -83,7 +90,8 @@ function App() {
               }
             >
               <Route path="/home" element={<HomePage />} />
-              <Route path="/table/:id?" element={<TablePage />} />
+              <Route path="/table/active-table" element={<TablePage />} />
+              <Route path='/user-profile' element={<ProfilePage />} />
             </Route>
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />

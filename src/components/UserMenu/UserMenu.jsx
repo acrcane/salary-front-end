@@ -8,7 +8,7 @@ export const UserMenu = () => {
   
   return (
     <Container>
-      <h2>Name: {user.name}</h2>
+      <h2>User profile</h2>
       <span>Salary per hour: {user.hourlyRate}zł</span> <br />
       <span>User role: {user.role}</span>
     </Container>

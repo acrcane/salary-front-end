@@ -1,22 +1,31 @@
 import styled from 'styled-components'
 
 export const Table = styled.table`
-margin: 0 auto;
-  width: 60%;
+  margin: 0 auto;
+  width: 100%;
   border-collapse: collapse;
+  background: var(--violet);
+  transform: translateY(50px);
+  @media (min-width: 768px) {
+    width: 60%;
+  }
 `
 export const Col = styled.tr`
+
 `
 export const RawTitle = styled.th`
   font-size: 2em;
   color: var(--pink);
   text-align: center;
+  
 `
 export const Raw = styled.td`
   font-size: 1em;
-  color: var(--pink);
   color: #fff;
-  border-bottom: 2px solid var(--pink);
+  border: 1px solid var(--pink);
   text-align: center;
-  max-width: 60px;
+  width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `

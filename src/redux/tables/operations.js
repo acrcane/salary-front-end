@@ -3,9 +3,9 @@ import { $api } from '../axiosInstance'
 
 export const apiCurrentTable = createAsyncThunk(
   'table/apiCurrentTable',
-  async (id, thunkApi) => {
+  async (_, thunkApi) => {
     try {
-      const { data } = await $api.get(`/table/${id}`)      
+      const { data } = await $api.get(`/table/active-table`)            
       return data
     } catch (error) {
       return thunkApi.rejectWithValue(error.message)

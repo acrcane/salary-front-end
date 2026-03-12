@@ -1,38 +1,36 @@
 import React from 'react'
 import { CheckIn, CheckOut, Container } from './WorkSession.styled'
-import { getPersistTableId } from '../../utils/getPersist'
-import { useDispatch, useSelector } from 'react-redux'
-import {
-  setCheckIn,
-  setTableId,
-  setCheckOut,
-} from '../../redux/workSession/workSessionSlice'
-import { apiWorkSession } from '../../redux/workSession/operations'
-import { selectWorkSessionCheckIn } from '../../redux/workSession/selectors'
+// import { getPersistTableId } from '../../utils/getPersist'
+import { useDispatch, 
+  useSelector 
+} from 'react-redux'
+import { apiCheckIn, apiCheckOut } from '../../redux/workSession/operations'
+import { 
+  selectSessionId, 
+  // selectorSession 
+} from '../../redux/workSession/selectors'
+import { selectTableId } from '../../redux/tables/selectors'
+
 
 export const WorkSession = () => {
   const dispatch = useDispatch()
-  const checkIn = useSelector(selectWorkSessionCheckIn)
+  const sessionId = useSelector(selectSessionId)
+  const tableId = useSelector(selectTableId)
 
   const handleCheckIn = () => {
     const time = new Date().toISOString()
-    dispatch(setCheckIn(time))
-
+    dispatch(apiCheckIn({
+      checkIn: time,
+      tableId
+    }))
   }
   const handleCheckOut = () => {
     const time = new Date().toISOString()
-    const tableId = getPersistTableId()
 
-    dispatch(setTableId(tableId))
-    dispatch(setCheckOut(time))
-
-    dispatch(
-      apiWorkSession({
-        checkIn,
-        tableId,
-        checkOut: time,
-      })
-    )
+    dispatch(apiCheckOut({
+      checkOut: time,
+      sessionId
+    }))
   }
 
   return (

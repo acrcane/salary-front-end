@@ -10,18 +10,32 @@ export const Backgroung = styled.div`
   z-index: 1;
 `
 export const ModalWrap = styled.div`
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
-
-  transform: translate(-50%, ${({ $showContent }) => ($showContent ? '-50%' : '-200%')});
+  transform: translate(
+    -50%,
+    ${({ $showContent }) => ($showContent ? '-50%' : '-200%')}
+  );
   transition: transform 0.5s ease;
- 
-  max-width: fit-content;
+  width: ${({ $type }) => ($type === 'settings' ? '800px' : 'fit-content')};
+  max-width: ${({ $type }) => ($type === 'settings' ? '100%' : 'fit-content')};
   height: fit-content;
   background-color: var(--white);
   z-index: 9;
   border-radius: 20px;
+
+  @media (min-width: 360px) and (max-width: 1024px) {
+    top: 0;
+    left: 0;
+    transform: ${({ $showContent }) =>
+      $showContent ? 'translate(0, 0)' : 'translateY(-100%)'};
+    width: 100%;
+    height: 100dvh;
+    max-width: 100%;
+    border-radius: 0;
+    background-color: var(--violet);
+  }
 `
 export const HeadContainer = styled.div`
   min-width: 300px;

@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { List, Elem } from './Manager.styled'
-import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
-import { selectCurrentTable } from '../../redux/tables/selectors'
+// import { useDispatch, useSelector } from 'react-redux'
+// import { useParams } from 'react-router-dom'
+// import { selectCurrentTable } from '../../redux/tables/selectors'
 
 export const Manager = ({ allUsers }) => {
-  const dispatch = useDispatch()
-  const {id} = useParams()
-  const userTable = useSelector(selectCurrentTable)
+  // const dispatch = useDispatch()
+  // const {id} = useParams()
+  // const userTable = useSelector(selectCurrentTable)
 
   // useEffect(() => {
   //   if()

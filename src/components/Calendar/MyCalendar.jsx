@@ -11,7 +11,7 @@ const locales = {
 const localizer = dateFnsLocalizer({
   format,
   parse,
-  startOfWeek,
+  startOfWeek: () => startOfWeek(new Date(), {weekStartsOn: 1}),
   getDay,
   locales,
 })
@@ -23,6 +23,17 @@ export const MyCalendar = ({events =[]}) => {
   const handleSelectSlot = (slotInfo) => {
     setSelectedRande(slotInfo)
   }
+
+  const dayPropGetter = (date) => {
+    const isSunday = date.getDay() === 0 
+    if(isSunday){
+      return{
+        className: 'rbc-sundays'
+      }
+    }
+    return{}
+  }
+
   return (
     <Container>
       <Calendar localizer={localizer}
@@ -32,11 +43,12 @@ export const MyCalendar = ({events =[]}) => {
         titleAccessor="title"
         culture="en-US"
         popup
-        views={'month'}
+        views={['month']}
         selectable={{slots: true}}
         onSelectSlot={handleSelectSlot}
         date={currentDate}
         onNavigate={(date) => setCurrentDate(date)}
+        dayPropGetter={dayPropGetter}
         style={{ height: '40vh', borderRadius: '16px' }}/>
         {selectedRange && (<div>Vacation: {selectedRange.start.toLocaleDateString()} - {selectedRange.end.toLocaleDateString()}</div>)}
     </Container>

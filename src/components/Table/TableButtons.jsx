@@ -1,8 +1,8 @@
 import React from 'react'
-import { useDispatch} from 'react-redux'
+import { useDispatch, useSelector} from 'react-redux'
 import { Close, Container, Create } from './TableButtons.styled'
 import { apiCloseTable, apiCreateTable } from '../../redux/tables/operations'
-import { getPersistTableId } from '../../utils/getPersist'
+import { selectTableId } from '../../redux/tables/selectors'
 import { clearTableId } from '../../redux/tables/tablesSlice'
 import { toast } from 'react-toastify'
 
@@ -10,7 +10,8 @@ import { toast } from 'react-toastify'
 
 export const TableButtons = () => {
   const dispatch = useDispatch()
-
+  const id = useSelector(selectTableId)
+  
   const handleCreateTable = () => {
     dispatch(apiCreateTable()).unwrap().catch(err => {
       if(err?.message === 'You already have an open table'){
@@ -22,7 +23,7 @@ export const TableButtons = () => {
   }
 
   const handleCloseTable = () => {
-    const id = getPersistTableId()
+    
     dispatch(apiCloseTable(id))
     dispatch(clearTableId())
   }

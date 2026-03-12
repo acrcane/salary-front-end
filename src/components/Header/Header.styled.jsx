@@ -8,6 +8,7 @@ export const Container = styled.header`
   display: flex;
   align-items: center;
   padding: 0 20px;
+  gap: 20px;
   > nav {
     display: flex;
     width: 100%;
@@ -15,6 +16,12 @@ export const Container = styled.header`
     gap: 12px;
     background-color: transparent;
     align-items: center;
+  }
+  > button {
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    
   }
 `
 export const Link = styled(NavLink)`
@@ -25,10 +32,15 @@ export const Link = styled(NavLink)`
   cursor: ${(p) => (p.$disabled ? 'not-allowed' : 'pointer')};
   &:hover {
     /* color: var(--pink); */
-    color: ${(p) => (p.$disabled ? 'grey' : 'var(--pink)')};
+    color: ${(p) => (p.$disabled ? 'grey' : 'var(--pink)')} !important;
   }
   &.active {
     /* color: var(--pink); */
-    color: ${(p) => (p.$disabled ? 'grey' : 'var(--pink)')};
+    color: ${(p) => (p.$disabled ? 'grey' : 'var(--pink)')} !important;
   }
+`
+export const LetterIcon = styled.svg`
+  width: 100%;
+  height: 100%;
+  stroke: var(--pink);
 `

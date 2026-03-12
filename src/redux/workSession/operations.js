@@ -1,19 +1,49 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { $api } from '../axiosInstance'
 
-export const apiWorkSession = createAsyncThunk(
-  '/workSession/apiWorkSession',
-  async ({ tableId, checkIn, checkOut }, thunkApi) => {
+export const apiCheckIn = createAsyncThunk(
+  '/check-in/apiCheckIn',
+  async ({ tableId, checkIn }, thunkApi) => {
     try {
-      const { data } = await $api.post('/work-session/session', {
+      const { data } = await $api.post('/work-session/check-in', {
         tableId,
         checkIn,
-        checkOut,
       })
-
+      console.log(data)
       return data
     } catch (error) {
-      thunkApi.rejectWithValue(error.message)
+      return thunkApi.rejectWithValue(error.message)
     }
   }
 )
+
+export const apiCheckOut = createAsyncThunk(
+  '/check-out/apiCheckOut',
+  async ({ checkOut, sessionId }, thunkApi) => {
+    try {
+      const { data } = await $api.patch(`/work-session/check-out/${sessionId}`, {
+        checkOut,
+      })
+      return data
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message)
+    }
+  }
+)
+
+// export const apiWorkSession = createAsyncThunk(
+//   '/workSession/apiWorkSession',
+//   async ({ tableId, checkIn, checkOut }, thunkApi) => {
+//     try {
+//       const { data } = await $api.post('/work-session/session', {
+//         tableId,
+//         checkIn,
+//         checkOut,
+//       })
+
+//       return data
+//     } catch (error) {
+//       thunkApi.rejectWithValue(error.message)
+//     }
+//   }
+// )

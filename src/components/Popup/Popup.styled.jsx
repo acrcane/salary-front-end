@@ -25,11 +25,11 @@ export const TrigerBtn = styled.button`
 `
 
 export const ActionContainer = styled.div`
-margin-top: 0px;
+
+  margin-top: 0px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  /* align-items: center; */
   background-color: var(--white);
   width: 200px;
   height: 100px;

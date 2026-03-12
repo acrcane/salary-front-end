@@ -1,17 +1,20 @@
-import styled from "styled-components";
-
-
+import styled from 'styled-components'
 
 export const Container = styled.div`
-width: 800px;
-height: 600px;
-padding: 25px;
-> h2{
-    
-}
-> span {
-
-}
+  width: 100%;
+  min-height: calc(var(--vh, 1vh) * 100 - 80px);
+  padding: 0 25px;
+  background-color: transparent;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+  color: var(--pink);
+  >h2 {
+    margin: 0;
+    text-align: center;
+    font-size: 3em;
+    font-weight: 600;
+  }
 `
 
 export const UserName = styled.h2``
