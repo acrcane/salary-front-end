@@ -30,6 +30,7 @@ export const ModalWrap = styled.div`
   height: ${({ $type }) =>
     $type === 'lastClosedTable' ? '90vh' : 'fit-content'};
   z-index: 9;
+  border: 1px solid var(--white);
   border-radius: 20px;
 
   @media (min-width: 360px) and (max-width: 1024px) {
@@ -62,5 +63,19 @@ export const HeadContainer = styled.div`
     border-radius: 50%;
     background-color: transparent;
     border: 1px solid var(--pink);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    > svg{
+      width: 30px;
+      height: 30px;
+      fill: var(--pink);
+      transition: all 0.3s ease-in-out;
+      &:hover{
+        width: 35px;
+        height: 35px;
+        transform: rotate(180deg)
+      }
+    }
   }
 `

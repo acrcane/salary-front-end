@@ -58,7 +58,15 @@ export const Modal = ({ children }) => {
         {modalType !== 'lastClosedTable' && (
           <HeadContainer>
             <h2>Settings</h2>
-            <button onClick={handleClose}>X</button>
+            <button onClick={handleClose}>
+              <svg>
+                <use
+                  href={`${
+                    import.meta.env.BASE_URL
+                  }assets/symbol-defs.svg#icon-close-x`}
+                />
+              </svg>
+            </button>
           </HeadContainer>
         )}
         {children}
