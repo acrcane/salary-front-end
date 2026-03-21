@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { Suspense } from 'react'
 import { Outlet } from 'react-router-dom'
 import { Main } from './Layout.styled'
-import { BurgerMenu, Header, Modal } from '../index.js'
+import { BurgerMenu, Header, LastTable, Modal } from '../index.js'
 import {
   selectModalIsOpenModal,
   selectModalType,
@@ -38,6 +38,7 @@ const Layout = () => {
                 {modalType === 'logout' && <LogoutConfirm />}
                 {modalType === 'message' && <Message />}
                 {modalType === 'burgerMenu' && <BurgerMenu />}
+                {modalType === 'lastClosedTable' && <LastTable />}
               </Modal>,
               document.body
             )}
