@@ -13,9 +13,7 @@ export const apiSignUp = createAsyncThunk(
   'auth/apiSignUp',
   async ({formData, type}, thunkApi) => {
     try {
-      const route = type === 'manager' ? '/manager/signup' : '/users/signup'
-      console.log(formData);
-      
+      const route = type === 'manager' ? '/manager/signup' : '/users/signup'      
       const { data } = await $api.post(route, formData)
       setToken(data.token)
       return data

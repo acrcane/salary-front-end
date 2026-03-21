@@ -1,9 +1,11 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit'
-import { apiAllUsers } from './operations'
+import { apiAllUsers, apiLastClosedTable } from './operations'
 
 const initialState = {
   isLoggedIn: false,
   users: [],
+  tables: [],
+  lastClosed: null,
   error: null,
   isLoading: false,
 }
@@ -19,9 +21,15 @@ const managerSlice = createSlice({
         state.isLoggedIn = true       
         state.users = action.payload
       })
+    .addCase(apiLastClosedTable.fulfilled, (state, action) => {
+      state.isLoading = false
+      state.isLoggedIn = true
+      state.lastClosed = action.payload      
+    })
       .addMatcher(
         isAnyOf(
             apiAllUsers.pending,
+            apiLastClosedTable.pending
         ),
         (state) => {
           state.isLoading = true
@@ -31,7 +39,7 @@ const managerSlice = createSlice({
       .addMatcher(
         isAnyOf(
             apiAllUsers.rejected,
-
+            apiLastClosedTable.pending
         ),
         (state, action) => {
           state.isLoading = false

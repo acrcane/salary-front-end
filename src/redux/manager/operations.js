@@ -12,3 +12,15 @@ export const apiAllUsers = createAsyncThunk(
     }
   }
 )
+
+export const apiLastClosedTable = createAsyncThunk(
+  'lastClosedTable/apiClosedTable',
+  async (id, thunkApi) => {
+    try {
+      const { data } = await $api.get(`/manager/user-last-table/${id}`)
+      return data
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message)
+    }
+  }
+)

@@ -21,11 +21,6 @@ const authConfig = {
   storage,
   whitelist: ['token'],
 }
-// const tableConfig = {
-//   key: 'tables',
-//   storage,
-//   whitelist: ['tableId'],
-// }
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authConfig, authReducer),

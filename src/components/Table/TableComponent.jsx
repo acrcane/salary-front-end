@@ -4,12 +4,13 @@ import { Table, Col, RawTitle, Raw } from './TableComponent.styled'
 import { selectCurrentTable } from '../../redux/tables/selectors'
 import { selectAuthUserData } from '../../redux/auth/selectors'
 import { apiCurrentTable } from '../../redux/tables/operations'
+import { selectModalType } from '../../redux/modal/selectors'
 
 export const TableComponent = () => {
   const dispatch = useDispatch()
   const currentTable = useSelector(selectCurrentTable)
   const user = useSelector(selectAuthUserData)
-
+  const modalType = useSelector(selectModalType)
   useEffect(() => {
     dispatch(apiCurrentTable())
   }, [dispatch])
@@ -17,7 +18,7 @@ export const TableComponent = () => {
 
 
   return (
-    <Table>
+    <Table $type={modalType}>
       <thead>
         {currentTable && (
           <Col>

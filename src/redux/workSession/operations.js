@@ -9,7 +9,6 @@ export const apiCheckIn = createAsyncThunk(
         tableId,
         checkIn,
       })
-      console.log(data)
       return data
     } catch (error) {
       return thunkApi.rejectWithValue(error.message)
@@ -30,20 +29,3 @@ export const apiCheckOut = createAsyncThunk(
     }
   }
 )
-
-// export const apiWorkSession = createAsyncThunk(
-//   '/workSession/apiWorkSession',
-//   async ({ tableId, checkIn, checkOut }, thunkApi) => {
-//     try {
-//       const { data } = await $api.post('/work-session/session', {
-//         tableId,
-//         checkIn,
-//         checkOut,
-//       })
-
-//       return data
-//     } catch (error) {
-//       thunkApi.rejectWithValue(error.message)
-//     }
-//   }
-// )

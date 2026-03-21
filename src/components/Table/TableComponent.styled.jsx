@@ -6,8 +6,9 @@ export const Table = styled.table`
   border-collapse: collapse;
   background: var(--violet);
   transform: translateY(50px);
-  @media (min-width: 768px) {
+  @media (min-width: 768px){
     width: 60%;
+    max-height: 100%;
   }
 `
 export const Col = styled.tr`

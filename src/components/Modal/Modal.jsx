@@ -22,7 +22,7 @@ export const Modal = ({ children }) => {
     }
   }, [isOpen, children])
   useEffect(() => {
-    if(showContent) {
+    if (showContent) {
       document.body.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = 'auto'
@@ -37,15 +37,30 @@ export const Modal = ({ children }) => {
       dispatch(closeModal())
     }, 300)
   }
+
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === 'Escape') {
+        setShowContent(false)
+        setTimeout(() => {
+          dispatch(closeModal())
+        }, 300)
+      }
+    }
+    window.addEventListener('keydown', handleEsc)
+    return () => window.removeEventListener('keydown', handleEsc)
+  }, [dispatch])
   if (!isOpen && !showContent) return null
   return (
     <>
       <Backdrop onClick={handleClose} />
       <ModalWrap $showContent={showContent} $type={modalType}>
-        <HeadContainer>
-          <h2>Settings</h2>
-          <button onClick={handleClose}>X</button>
-        </HeadContainer>
+        {modalType !== 'lastClosedTable' && (
+          <HeadContainer>
+            <h2>Settings</h2>
+            <button onClick={handleClose}>X</button>
+          </HeadContainer>
+        )}
         {children}
       </ModalWrap>
     </>

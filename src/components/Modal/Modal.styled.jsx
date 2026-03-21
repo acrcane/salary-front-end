@@ -13,15 +13,22 @@ export const ModalWrap = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
+  background-color: var(--violet);
   transform: translate(
     -50%,
     ${({ $showContent }) => ($showContent ? '-50%' : '-200%')}
   );
   transition: transform 0.5s ease;
-  width: ${({ $type }) => ($type === 'settings' ? '800px' : 'fit-content')};
-  max-width: ${({ $type }) => ($type === 'settings' ? '100%' : 'fit-content')};
-  height: fit-content;
-  background-color: var(--white);
+
+  width: ${({ $type }) =>
+    $type === 'lastClosedTable'
+      ? '1024px'
+      : $type === 'settings'
+      ? '800px'
+      : 'fit-content'};
+  max-width: 100%;
+  height: ${({ $type }) =>
+    $type === 'lastClosedTable' ? '90vh' : 'fit-content'};
   z-index: 9;
   border-radius: 20px;
 
@@ -32,7 +39,6 @@ export const ModalWrap = styled.div`
       $showContent ? 'translate(0, 0)' : 'translateY(-100%)'};
     width: 100%;
     height: 100dvh;
-    max-width: 100%;
     border-radius: 0;
     background-color: var(--violet);
   }

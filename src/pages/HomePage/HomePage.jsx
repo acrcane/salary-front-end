@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import {
   Manager,
-  MyCalendar,
   TableButtons,
   WorkSession,
   CustomCalendar
@@ -21,14 +20,13 @@ const HomePage = () => {
       dispatch(apiAllUsers())
     }
   }, [dispatch, user])
+
+  
   return (
     <Section>
       <div>
         <CustomCalendar />
       </div>
-      {/* <div>
-        <MyCalendar />
-      </div> */}
       {user?.role === 'manager' ? (
         <div>
           <Manager allUsers={allUsers} />
