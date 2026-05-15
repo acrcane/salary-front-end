@@ -15,7 +15,6 @@ export const CalendarContainer = styled.div`
   border-radius: 10px;
   padding: 12px;
   background: var(--violet);
-  /* backdrop-filter: blur(100px); */
 `
 export const CalendarHeader = styled.div`
   display: flex;
