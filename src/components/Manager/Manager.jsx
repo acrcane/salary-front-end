@@ -8,7 +8,7 @@ import { apiLastClosedTable } from '../../redux/manager/operations'
 export const Manager = ({ allUsers }) => {
   const dispatch = useDispatch()
 
-  const handleOpenTable = (userId) => {
+  const handleOpenTable = (userId) => {    
     dispatch(openModal('lastClosedTable'))  
     dispatch(apiLastClosedTable(userId))
   }
