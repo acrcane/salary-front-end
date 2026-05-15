@@ -39,7 +39,7 @@ const managerSlice = createSlice({
       .addMatcher(
         isAnyOf(
             apiAllUsers.rejected,
-            apiLastClosedTable.pending
+            apiLastClosedTable.rejected
         ),
         (state, action) => {
           state.isLoading = false
