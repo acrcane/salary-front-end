@@ -29,6 +29,8 @@ export const ModalWrap = styled.div`
   max-width: 100%;
   height: ${({ $type }) =>
     $type === 'lastClosedTable' ? '90vh' : 'fit-content'};
+  overflow-y: ${({ $type }) =>
+    $type === 'lastClosedTable' ? 'auto' : 'visible'};
   z-index: 9;
   border: 1px solid var(--white);
   border-radius: 20px;
