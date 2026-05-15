@@ -5,7 +5,7 @@ import { selectLastClosedTable } from '../../redux/manager/selectors'
 
 export const LastTable = () => {
   const closedTable = useSelector(selectLastClosedTable)
-  console.log(closedTable)
+
 
   return (
     <Table>
