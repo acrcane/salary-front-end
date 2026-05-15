@@ -1,29 +1,19 @@
 @import 'normalize.css';
-/* .nunito-sans-<uniquifier> {
-  font-family: "Nunito Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: <weight>;
-  font-style: normal;
-  font-variation-settings:
-    "wdth" 100,
-    "YTLC" 500;
-} */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 :root {
-  /* font-family: system-ui, Avenir, Helvetica, Arial, sans-serif; */
   line-height: 1.5;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   --violet: rgb(30, 27, 53); 
-  --dark: rgb(6, 5, 10);
-  --pink: rgb(177, 88, 194);
+  --dark: #06050a;
+  --pink: #b158c2;
   --white: rgb(255, 255, 255);
-  --second-violet: rgb(69, 71, 100);
+  --second-violet: #454764;
   --shadow: rgb(41, 45, 82);
   --blue: rgb(27, 100, 197);
   --red: rgb(196, 17, 17);
@@ -39,16 +29,12 @@ a {
 
 body {
   margin: 0;
-  /* display: flex;
-  flex-direction: column;
-  place-items: center;
-  min-height: 100vh; */
   font-family: "Nunito Sans", sans-serif;
   /* background-color: var(--dark); */
   background-color: var(--second-violet);
   width: 100%;
   min-height: calc(var(--vh, 1vh) * 100 - 80px);
-  background-image: url('${import.meta.env.BASE_URL}images/background/assets-cached.png');
+  /* background-image: url('${import.meta.env.BASE_URL}images/background/assets-cached.png'); */
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -80,15 +66,3 @@ ul{
   list-style: none;
 }
 
-/* @media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-} */
