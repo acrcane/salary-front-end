@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { toast } from 'react-toastify'
-import { Container, Label, Input,Submit } from './AuthForm.styled'
+import { Container, Form, Label, Input, Submit } from './AuthForm.styled'
 import { useDispatch } from 'react-redux'
 import { apiSignIn } from '../../redux/auth/operations'
 import { Link } from 'react-router-dom'
@@ -39,7 +39,7 @@ export const SignInForm = () => {
 
   return (
     <Container>
-    <form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <Label htmlFor="email">
         <Input
           type="email"
@@ -60,7 +60,7 @@ export const SignInForm = () => {
       <Submit type="submit">Submit</Submit>
       <p>OR</p>
       <Link to={'/sign-up'}>Registration</Link>
-    </form>
+    </Form>
   </Container>
   )
 }
