@@ -17,30 +17,48 @@ export const Container = styled.header`
     background-color: transparent;
     align-items: center;
   }
-  > button {
-    width: 50px;
-    height: 50px;
-    background-color: transparent;
-    
+`
+export const BurgerButton = styled.button`
+  display: flex;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+
+  @media (min-width: 1024px) {
+    display: none;
   }
 `
-export const Link = styled(NavLink)`
-  font-size: 1.6em;
-  color: ${(p) => (p.$disabled ? 'grey' : 'var(--white)')};
-  transition: ease-in-out 0.3s;
-  pointer-events: ${(p) => (p.$disabled ? 'none' : 'auto')};
-  cursor: ${(p) => (p.$disabled ? 'not-allowed' : 'pointer')};
-  &:hover {
-    /* color: var(--pink); */
-    color: ${(p) => (p.$disabled ? 'grey' : 'var(--pink)')} !important;
+export const DesktopNav = styled.nav`
+  display: none;
+  width: 100%;
+  height: 100%;
+  gap: 12px;
+  align-items: center;
+
+  @media (min-width: 1024px) {
+    display: flex;
   }
+`
+export const Link = styled(NavLink).withConfig({
+  shouldForwardProp: (prop) => prop !== '$disabled',
+})`
+  font-size: 1rem;
+  color: ${({ $disabled }) => ($disabled ? '#ccc' : 'var(--white)')};
+  opacity: ${({ $disabled }) => ($disabled ? 0.5 : 1)};
+  pointer-events: ${({ $disabled }) => ($disabled ? 'none' : 'auto')};
+  transition: color 0.3s ease-in-out;
+
+  &:hover,
   &.active {
-    /* color: var(--pink); */
-    color: ${(p) => (p.$disabled ? 'grey' : 'var(--pink)')} !important;
+    color: ${({ $disabled }) => ($disabled ? '#ccc' : 'var(--pink)')};
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 1.125rem;
   }
 `
 export const LetterIcon = styled.svg`
-  width: 100%;
-  height: 100%;
+  width: 50px;
+  height: 50px;
   stroke: var(--pink);
 `
