@@ -2,11 +2,13 @@ import styled from "styled-components";
 
 export const Container = styled.div`
 display: flex;
+flex-direction: column;
 justify-content: center;
 align-items: center;
 height: 80px;
 width: 100%;
 gap: 30px;
+margin-bottom: 30px;
 `
 
 export const BaseButton = styled.button`

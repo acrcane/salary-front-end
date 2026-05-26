@@ -9,14 +9,6 @@ export const Container = styled.header`
   align-items: center;
   padding: 0 20px;
   gap: 20px;
-  > nav {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    gap: 12px;
-    background-color: transparent;
-    align-items: center;
-  }
 `
 export const BurgerButton = styled.button`
   display: flex;
