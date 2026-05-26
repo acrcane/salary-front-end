@@ -51,7 +51,13 @@ function App() {
     }
   }, [user, dispatch])
 
-   
+  useEffect(() => {
+    const ping = setInterval(() => {
+      fetch('https://salary-back-end.onrender.com/ping')
+    }, 10 * 60 * 1000)
+
+    return () => clearInterval(ping)
+  }, [])   
 
   return (
     <>
