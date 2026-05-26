@@ -1,0 +1,1 @@
+export const selectorVacation = state => state.message.vacation
