@@ -35,7 +35,7 @@ export const ModalWrap = styled.div`
   border: 1px solid var(--white);
   border-radius: 20px;
 
-  @media (min-width: 360px) and (max-width: 1024px) {
+  @media (min-width: 320px) and (max-width: 1024px) {
     top: 0;
     left: 0;
     transform: ${({ $showContent }) =>
@@ -48,7 +48,7 @@ export const ModalWrap = styled.div`
 `
 export const HeadContainer = styled.div`
   min-width: 300px;
-  max-width: 800px;
+  max-width: 1024px;
   min-height: 60px;
   max-height: 70px;
   display: flex;
@@ -57,7 +57,7 @@ export const HeadContainer = styled.div`
   padding: 0 15px;
   > h2 {
     font-size: 1.5em;
-    color: transparent;
+    color: var(--white);
   }
   > button {
     width: 40px;

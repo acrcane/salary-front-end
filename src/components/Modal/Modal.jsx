@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Backdrop } from './Backdrop'
 import { HeadContainer, ModalWrap } from './Modal.styled'
 import { useDispatch, useSelector } from 'react-redux'
@@ -6,11 +6,12 @@ import { closeModal } from '../../redux/modal/modalSlice'
 import { selectModalIsOpenModal } from '../../redux/modal/selectors'
 import { selectModalType } from '../../redux/modal/selectors'
 
-export const Modal = ({ children }) => {
+export const Modal = ({ children, title }) => {
   const dispatch = useDispatch()
   const isOpen = useSelector(selectModalIsOpenModal)
   const modalType = useSelector(selectModalType)
   const [showContent, setShowContent] = useState(false)
+  
   useEffect(() => {
     if (isOpen) {
       setShowContent(true)
@@ -20,7 +21,7 @@ export const Modal = ({ children }) => {
       }, 300)
       return () => clearTimeout(timer)
     }
-  }, [isOpen, children])
+  }, [isOpen])
   useEffect(() => {
     if (showContent) {
       document.body.style.overflow = 'hidden'
@@ -31,33 +32,27 @@ export const Modal = ({ children }) => {
       document.body.style.overflow = 'auto'
     }
   }, [showContent])
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setShowContent(false)
     setTimeout(() => {
       dispatch(closeModal())
     }, 300)
-  }
+  }, [dispatch])
 
   useEffect(() => {
     const handleEsc = (e) => {
-      if (e.key === 'Escape') {
-        setShowContent(false)
-        setTimeout(() => {
-          dispatch(closeModal())
-        }, 300)
-      }
+      if (e.key === 'Escape') handleClose()
     }
     window.addEventListener('keydown', handleEsc)
     return () => window.removeEventListener('keydown', handleEsc)
-  }, [dispatch])
+  }, [handleClose])
   if (!isOpen && !showContent) return null
   return (
     <>
       <Backdrop onClick={handleClose} />
       <ModalWrap $showContent={showContent} $type={modalType}>
-        {modalType !== 'lastClosedTable' && (
           <HeadContainer>
-            <h2>Settings</h2>
+            <h2>{title}</h2>
             <button onClick={handleClose}>
               <svg>
                 <use
@@ -68,7 +63,6 @@ export const Modal = ({ children }) => {
               </svg>
             </button>
           </HeadContainer>
-        )}
         {children}
       </ModalWrap>
     </>

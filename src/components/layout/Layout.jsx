@@ -3,19 +3,28 @@ import ReactDOM from 'react-dom'
 import { Suspense } from 'react'
 import { Outlet } from 'react-router-dom'
 import { Main } from './Layout.styled'
-import { BurgerMenu, Header, LastTable, Modal } from '../index.js'
+import { 
+  // BurgerMenu, 
+  Header, 
+  // LastTable, 
+  Modal } from '../index.js'
 import {
   selectModalIsOpenModal,
   selectModalType,
 } from '../../redux/modal/selectors.js'
 import { useSelector } from 'react-redux'
-import { UserMenu } from '../UserMenu/UserMenu.jsx'
-import { LogoutConfirm } from '../LogoutConfirm/LogoutConfirm.jsx'
-import { Message } from '../index.js'
+// import { UserMenu } from '../UserMenu/UserMenu.jsx'
+// import { LogoutConfirm } from '../LogoutConfirm/LogoutConfirm.jsx'
+// import { Message } from '../index.js'
+import { MODAL_CONFIG } from '../../utils/modalConfig.js'
 
 const Layout = () => {
   const isOpen = useSelector(selectModalIsOpenModal)
   const modalType = useSelector(selectModalType)
+
+  const config = MODAL_CONFIG[modalType]
+  const Component = config?.component
+
   useEffect(() => {
     const setVh = () => {
       const vh = window.innerHeight * 0.01
@@ -33,12 +42,8 @@ const Layout = () => {
         <Main>
           {isOpen &&
             ReactDOM.createPortal(
-              <Modal>
-                {modalType === 'settings' && <UserMenu />}
-                {modalType === 'logout' && <LogoutConfirm />}
-                {modalType === 'message' && <Message />}
-                {modalType === 'burgerMenu' && <BurgerMenu />}
-                {modalType === 'lastClosedTable' && <LastTable />}
+              <Modal title={config?.title}>
+                {Component && <Component />}
               </Modal>,
               document.body
             )}
