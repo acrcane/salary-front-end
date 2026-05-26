@@ -1,4 +1,4 @@
-import{d as i}from"./styled-components.browser.esm-D-Idqrgx.js";const a=i.div`
+import{d as i}from"./styled-components.browser.esm-CSTz_zm3.js";const a=i.div`
   width: 100%;
   min-height: calc(var(--vh, 1vh) * 100 - 80px);
   padding: 0 25px;
