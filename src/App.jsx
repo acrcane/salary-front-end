@@ -53,7 +53,9 @@ function App() {
 
   useEffect(() => {
     const ping = setInterval(() => {
-      fetch('https://salary-back-end.onrender.com/ping')
+      fetch('https://salary-back-end.onrender.com/ping', {
+        cache: 'no-store'
+      })
     }, 10 * 60 * 1000)
 
     return () => clearInterval(ping)
