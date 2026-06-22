@@ -1,4 +1,4 @@
-import{N as s,j as t}from"./index-a1zMZMLI.js";import{d as e}from"./styled-components.browser.esm-DK1maTrb.js";const o=e.section`
+import{N as s,j as t}from"./index-BXt1eg0v.js";import{d as e}from"./styled-components.browser.esm-y-7Easz0.js";const o=e.section`
 display: flex;
 flex-direction: column;
 height: 100%;

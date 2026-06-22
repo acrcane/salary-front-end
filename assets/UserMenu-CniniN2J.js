@@ -1,0 +1,1 @@
+import{a as e,s as o,j as r}from"./index-BXt1eg0v.js";import{C as a}from"./UserMenu.styled-qdGavqGB.js";const l=()=>{const s=e(o);return r.jsxs(a,{children:[r.jsx("h2",{children:"User profile"}),r.jsxs("span",{children:["Salary per hour: ",s.hourlyRate,"zł"]})," ",r.jsx("br",{}),r.jsxs("span",{children:["User role: ",s.role]})]})};export{l as U};
