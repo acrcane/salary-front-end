@@ -6,8 +6,6 @@ export const $api = axios.create({
     withCredentials: true
 })
 
-// $api.defaults.withCredentials = false
-
 $api.interceptors.response.use(
     response => response,
     error => {

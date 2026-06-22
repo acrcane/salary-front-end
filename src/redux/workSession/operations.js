@@ -20,9 +20,24 @@ export const apiCheckOut = createAsyncThunk(
   '/check-out/apiCheckOut',
   async ({ checkOut, sessionId }, thunkApi) => {
     try {
-      const { data } = await $api.patch(`/work-session/check-out/${sessionId}`, {
-        checkOut,
-      })
+      const { data } = await $api.patch(
+        `/work-session/check-out/${sessionId}`,
+        {
+          checkOut,
+        }
+      )
+      return data
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message)
+    }
+  }
+)
+
+export const apiCurrentSession = createAsyncThunk(
+  '/currentSession/apiCurrentSession',
+  async (_, thunkApi) => {
+    try {
+      const { data } = await $api.get('/work-session/active')
       return data
     } catch (error) {
       return thunkApi.rejectWithValue(error.message)

@@ -1,9 +1,9 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit'
-import { apiCheckIn, apiCheckOut } from './operations'
+import { apiCheckIn, apiCheckOut, apiCurrentSession } from './operations'
 
 const initialState = {
   sessionId: null,
-  checkIn: null, 
+  checkIn: null,
   checkOut: null,
   tableId: null,
   error: null,
@@ -31,25 +31,40 @@ const workSessionSlice = createSlice({
       .addCase(apiCheckIn.fulfilled, (state, action) => {
         state.isLoading = false
         state.error = null
-        state.sessionId = action.payload._id   
+        state.sessionId = action.payload._id
         state.checkIn = action.payload
-        state.tableId = action.payload
+        state.tableId = action.payload.tableId ?? null
       })
       .addCase(apiCheckOut.fulfilled, (state, action) => {
         state.isLoading = false
         state.error = null
-        state.sessionId = action.payload._id
-        state.checkOut = action.payload       
+        state.sessionId = null
+        state.checkIn = null
+        state.checkOut = action.payload
+      })
+      .addCase(apiCurrentSession.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.error = null
+        state.sessionId = action.payload?._id || null
+        state.checkIn = action.payload?.checkIn || null
+      })
+      .addCase(apiCurrentSession.rejected, (state) => {
+        state.isLoading = false
+        state.sessionId = null
+        state.checkIn = null
       })
       .addMatcher(isAnyOf(apiCheckIn.pending, apiCheckOut.pending), (state) => {
         state.isLoading = true
         state.error = null
       })
 
-      .addMatcher(isAnyOf(apiCheckIn.rejected, apiCheckOut.rejected), (state, action) => {
-        state.isLoading = false
-        state.error = action.payload
-      })
+      .addMatcher(
+        isAnyOf(apiCheckIn.rejected, apiCheckOut.rejected),
+        (state, action) => {
+          state.isLoading = false
+          state.error = action.payload
+        }
+      )
   },
 })
 
