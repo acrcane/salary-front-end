@@ -12,5 +12,20 @@
 <symbol id="icon-close-x" viewBox="0 0 32 32">
 <path d="M7.057 7.057c0.521-0.521 1.365-0.521 1.886 0l7.057 7.057 7.057-7.057c0.521-0.521 1.365-0.521 1.886 0s0.521 1.365 0 1.886l-7.057 7.057 7.057 7.057c0.521 0.521 0.521 1.365 0 1.886s-1.365 0.521-1.886 0l-7.057-7.057-7.057 7.057c-0.521 0.521-1.365 0.521-1.886 0s-0.521-1.365 0-1.886l7.057-7.057-7.057-7.057c-0.521-0.521-0.521-1.365 0-1.886z"></path>
 </symbol>
+<symbol id="icon-home2" viewBox="0 0 32 32">
+<path d="M16 1l-16 16 3 3 3-3v13h8v-6h4v6h8v-13l3 3 3-3-16-16zM16 14c-1.105 0-2-0.895-2-2s0.895-2 2-2c1.105 0 2 0.895 2 2s-0.895 2-2 2z"></path>
+</symbol>
+<symbol id="icon-table2" viewBox="0 0 32 32">
+<path d="M0 2v28h32v-28h-32zM12 20v-6h8v6h-8zM20 22v6h-8v-6h8zM20 6v6h-8v-6h8zM10 6v6h-8v-6h8zM2 14h8v6h-8v-6zM22 14h8v6h-8v-6zM22 12v-6h8v6h-8zM2 22h8v6h-8v-6zM22 28v-6h8v6h-8z"></path>
+</symbol>
+<symbol id="icon-enter" viewBox="0 0 32 32">
+<path d="M12 16h-10v-4h10v-4l6 6-6 6zM32 0v26l-12 6v-6h-12v-8h2v6h10v-18l8-4h-18v8h-2v-10z"></path>
+</symbol>
+<symbol id="icon-exit" viewBox="0 0 32 32">
+<path d="M24 20v-4h-10v-4h10v-4l6 6zM22 18v8h-10v6l-12-6v-26h22v10h-2v-8h-16l8 4v18h8v-6z"></path>
+</symbol>
+<symbol id="icon-menu" viewBox="0 0 24 24">
+    <path d="M3 6 L21 6 M3 12 L21 12 M3 18 L21 18" fill="rgba(237, 233, 254, 0.2)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  </symbol>
 </defs>
 </svg>

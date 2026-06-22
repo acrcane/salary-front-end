@@ -3,19 +3,12 @@ import ReactDOM from 'react-dom'
 import { Suspense } from 'react'
 import { Outlet } from 'react-router-dom'
 import { Main } from './Layout.styled'
-import { 
-  // BurgerMenu, 
-  Header, 
-  // LastTable, 
-  Modal } from '../index.js'
+import { Header, Modal } from '../index.js'
 import {
   selectModalIsOpenModal,
   selectModalType,
 } from '../../redux/modal/selectors.js'
 import { useSelector } from 'react-redux'
-// import { UserMenu } from '../UserMenu/UserMenu.jsx'
-// import { LogoutConfirm } from '../LogoutConfirm/LogoutConfirm.jsx'
-// import { Message } from '../index.js'
 import { MODAL_CONFIG } from '../../utils/modalConfig.js'
 
 const Layout = () => {
@@ -42,9 +35,7 @@ const Layout = () => {
         <Main>
           {isOpen &&
             ReactDOM.createPortal(
-              <Modal title={config?.title}>
-                {Component && <Component />}
-              </Modal>,
+              <Modal title={config?.title}>{Component && <Component />}</Modal>,
               document.body
             )}
           <Outlet />

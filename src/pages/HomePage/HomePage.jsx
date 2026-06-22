@@ -33,7 +33,7 @@ const HomePage = () => {
         </div>
       ) : (
         <div>
-          <TableButtons />
+          {/* <TableButtons /> */}
           <WorkSession />
         </div>
       )}

@@ -12,6 +12,7 @@ import { ClipLoader } from 'react-spinners'
 import { override } from './utils/loader'
 import { ToastContainer } from 'react-toastify'
 import { Navigate } from 'react-router-dom'
+import { apiCurrentSession } from './redux/workSession/operations'
 
 
 
@@ -48,18 +49,10 @@ function App() {
   useEffect(() => {
     if (user) {
       dispatch(apiCurrentTable())
+      dispatch(apiCurrentSession())
     }
   }, [user, dispatch])
 
-  useEffect(() => {
-    const ping = setInterval(() => {
-      fetch('https://salary-back-end.onrender.com/ping', {
-        cache: 'no-store'
-      })
-    }, 10 * 60 * 1000)
-
-    return () => clearInterval(ping)
-  }, [])   
 
   return (
     <>

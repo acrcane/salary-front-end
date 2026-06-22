@@ -23,6 +23,7 @@ export const CustomCalendar: React.FC<CalendarProps> = ({
   maxDate,
 }) => {
   const [currentDate, setCurrentDate] = useState(value || new Date())
+  const [selectedDate, setSelectedDate] = useState<Date | null>(value || null)
   const days = useCalendar(currentDate)
   const changeMonth = (offset: number) => {
     setCurrentDate(
@@ -37,20 +38,20 @@ export const CustomCalendar: React.FC<CalendarProps> = ({
 
   const handleSelect = (date: Date) => {
     if (isDisabled(date)) return 
-    setCurrentDate(date)
+    setSelectedDate(date)
     onChange?.(date)    
   }
   return (
     <CalendarContainer>
       <CalendarHeader>
         <button onClick={() => changeMonth(-1)}>{'<'}</button>
-        <h2>{currentDate.toLocaleDateString('en-US', { month: 'long' })}</h2>
+        <h2>{currentDate.toLocaleDateString('en-US', { month: 'long' })}<span>{currentDate.getFullYear()}</span></h2>
         <button onClick={() => changeMonth(1)}>{'>'}</button>
       </CalendarHeader>
       <CalendarGrid>
       {days.map((day) => {
   const disabled = isDisabled(day.date)
-  const selected = isSameDate(day.date, currentDate)
+  const selected = selectedDate ? isSameDate(day.date, selectedDate) : false
 
   return (
     <CalendarDay

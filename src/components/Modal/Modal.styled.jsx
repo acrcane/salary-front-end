@@ -13,12 +13,13 @@ export const ModalWrap = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
-  background-color: var(--violet);
+  background: var(--violet);
   transform: translate(
     -50%,
     ${({ $showContent }) => ($showContent ? '-50%' : '-200%')}
   );
-  transition: transform 0.5s ease;
+  opacity: ${({ $showContent }) => ($showContent ? 1 : 0)};
+  transition: transform 0.4s ease, opacity 0.3s ease ;
 
   width: ${({ $type }) =>
     $type === 'lastClosedTable'
@@ -32,7 +33,8 @@ export const ModalWrap = styled.div`
   overflow-y: ${({ $type }) =>
     $type === 'lastClosedTable' ? 'auto' : 'visible'};
   z-index: 9;
-  border: 1px solid var(--white);
+  border: ${({ $type }) =>
+    $type === 'burgerMenu' ? 'none' : '1px solid var(--white)'};
   border-radius: 20px;
 
   @media (min-width: 320px) and (max-width: 1024px) {
@@ -43,7 +45,6 @@ export const ModalWrap = styled.div`
     width: 100%;
     height: 100dvh;
     border-radius: 0;
-    background-color: var(--violet);
   }
 `
 export const HeadContainer = styled.div`
@@ -68,15 +69,15 @@ export const HeadContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    > svg{
+    > svg {
       width: 30px;
       height: 30px;
       fill: var(--pink);
       transition: all 0.3s ease-in-out;
-      &:hover{
+      &:hover {
         width: 35px;
         height: 35px;
-        transform: rotate(180deg)
+        transform: rotate(180deg);
       }
     }
   }

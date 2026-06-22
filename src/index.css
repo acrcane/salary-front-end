@@ -9,16 +9,25 @@
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --violet: rgb(30, 27, 53); 
+  --violet: #100f1d; 
   --dark: #06050a;
-  --pink: #b158c2;
+  --accent: #7c3aed;
+  --accent-mid:#9333ea;
+  --accent-light:#a78bfa;
+  --text:#ede9fe;
+  --text-sub:rgba(237, 233, 254, 0.5);
+  --text-muted:rgba(237, 233, 254, 0.2);
+  --border:rgba(139, 92, 246, 0.12);
+  --border-hover:rgba(139, 92, 246, 0.35);
   --white: rgb(255, 255, 255);
+  --glow:rgba(124, 58, 237, 0.25);
   --second-violet: #454764;
   --shadow: rgb(41, 45, 82);
-  --blue: rgb(27, 100, 197);
-  --red: rgb(196, 17, 17);
-  --green: rgb(11, 194, 29);
+  --success:#10b981;
+  --danger:rgba(239, 68, 68, 0.5);
   --pink-second: rgb(166, 20, 195);
+  --dark-rgb: 13, 10, 26;
+  --accent-rgb: 139, 92, 246;
 }
 
 a {
@@ -26,18 +35,44 @@ a {
   text-decoration: inherit;
 }
 
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
 
 body {
-  margin: 0;
-  font-family: "Nunito Sans", sans-serif;
-  /* background-color: var(--dark); */
-  background-color: var(--second-violet);
-  width: 100%;
-  min-height: calc(var(--vh, 1vh) * 100 - 80px);
-  background-image: url('/public/images/background/endless-constellation.svg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  font-family: 'Nunito Sans', sans-serif;
+  background: #0d0a1a;
+  position: relative;
+  color: var(--text);
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: -200px; left: 50%;
+  transform: translateX(-50%);
+  width: 800px; height: 600px;
+  background: radial-gradient(ellipse at center,
+    rgba(124, 58, 237, 0.12) 0%,
+    transparent 65%
+  );
+  animation: pulse 30s ease-in infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  bottom: -100px; right: -100px;
+  width: 500px; height: 500px;
+  background: radial-gradient(ellipse at center,
+    rgba(147, 51, 234, 0.07) 0%,
+    transparent 65%
+  );
+  pointer-events: none;
+  z-index: 0;
 }
 
 h1 {

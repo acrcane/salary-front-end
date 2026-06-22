@@ -6,6 +6,8 @@ import {
   LetterIcon,
   BurgerButton,
   DesktopNav,
+  MessageBtn,
+  BurgerIcon,
 } from './Header.styled'
 import { selectTableId } from '../../redux/tables/selectors'
 import { openModal } from '../../redux/modal/modalSlice'
@@ -23,34 +25,29 @@ export const Header = () => {
   return (
     <Container>
       <BurgerButton onClick={handleOpenMenu}>
-        MOB
+        <BurgerIcon>
+          <use
+            href={`${import.meta.env.BASE_URL}assets/symbol-defs.svg#icon-menu`}
+          />
+        </BurgerIcon>
       </BurgerButton>
       <DesktopNav>
         <Link to={`/home`} end>
           Home
         </Link>
-        <Link
-          to={currentTable ? `/table/active-table` : '#'}
-          style={{
-            pointerEvents: currentTable ? 'auto' : 'none',
-            opacity: currentTable ? 1 : 0.5,
-            color: currentTable ? 'var(--white)' : '#ccc',
-          }}
-        >
-          Table
-        </Link>
+        <Link to={currentTable ? `/table/active-table` : '#'}>Table</Link>
         <Link to={`/user-profile`}>Profile</Link>
+        <MessageBtn onClick={handleOpenMessage}>
+          <LetterIcon>
+            <use
+              href={`${
+                import.meta.env.BASE_URL
+              }assets/symbol-defs.svg#icon-letter`}
+            />
+          </LetterIcon>
+        </MessageBtn>
+        <Popup />
       </DesktopNav>
-      <button onClick={handleOpenMessage}>
-        <LetterIcon>
-          <use
-            href={`${
-              import.meta.env.BASE_URL
-            }assets/symbol-defs.svg#icon-letter`}
-          />
-        </LetterIcon>
-      </button>
-      <Popup />
     </Container>
   )
 }

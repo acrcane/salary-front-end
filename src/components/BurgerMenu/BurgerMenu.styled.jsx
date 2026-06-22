@@ -5,34 +5,74 @@ export const Navigation = styled.nav`
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+
   > ul {
-    padding: 0;
+    padding: 8px 0;
     margin: 0;
     width: 100%;
-    height: 100%;
     display: flex;
-    gap: 32px;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+    gap: 4px;
+    list-style: none;
+
+    > li {
+      width: 100%;
+    }
   }
 `
 
-export const Link = styled(NavLink)`
-  font-size: 1.5rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  color: var(--white);
-  transition: color 0.3s ease-in-out;
+export const Icon = styled.svg`
+  width: 20px;
+  height: 20px;
+  fill: var(--text-muted);
+  flex-shrink: 0;
+  transition: fill 0.15s ease;
+`
 
-  &.active,
+export const Link = styled(NavLink).withConfig({
+  shouldForwardProp: prop => prop !== '$disabled',
+})`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 12px;
+  padding: 12px 20px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--text-sub);
+  transition: all 0.15s ease;
+  position: relative;
+  opacity: ${({ $disabled }) => ($disabled ? 0.35 : 1)};
+  pointer-events: ${({ $disabled }) => ($disabled ? 'none' : 'auto')};
+
   &:hover {
-    color: var(--pink);
+    color: var(--text);
+    background: rgba(var(--accent-rgb), 0.06);
+
+    ${Icon} {
+      fill: var(--accent-light);
+    }
   }
 
-  @media (min-width: 480px) {
-    font-size: 1.75rem;
+  &.active {
+    color: var(--accent-light);
+    background: rgba(var(--accent-rgb), 0.1);
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      background: var(--accent);
+      border-radius: 0 2px 2px 0;
+    }
+
+    ${Icon} {
+      fill: var(--accent);
+    }
   }
 `
